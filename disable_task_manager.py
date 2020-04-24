@@ -1,12 +1,12 @@
-import win32gui, win32con
+import win32gui, win32con, win32api
 
 def getFileDescription(windows_exe): # find description of exe for different languages
     try:
         language, codepage = win32api.GetFileVersionInfo(windows_exe, '\\VarFileInfo\\Translation')[0]
         stringFileInfo = u'\\StringFileInfo\\%04X%04X\\%s' % (language, codepage, "FileDescription")
         description = win32api.GetFileVersionInfo(windows_exe, stringFileInfo)
-    except:
-        description = "unknown"
+    except Exeption as err:
+        print('error',err)
         
     return description
 
